@@ -6,7 +6,7 @@ import { injected, celsiusWallet } from '../connectors'
 
 export const ROUTER_ADDRESS = '0x2D366a4871132E2CdBA35E87fd78D7F82Fa2fc55'
 
-// a list of tokens by chain
+// A list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
