@@ -11,10 +11,19 @@ An open source interface for Celswap -- a protocol for decentralized exchange of
 To access the Celswap Interface, use an IPFS gateway link from the
  visit [app.celswap.org](https://app.celswap.org).
 
-### Install Dependencies
+### First, Install Dependencies and build uniswap-sdk package
 
 ```bash
 yarn
+yarn build
+yarn link
+```
+
+### Install Celswap Dependencies 
+
+```bash
+yarn
+yarn start
 ```
 
 ### Run

@@ -14,6 +14,9 @@ import Circle from '../../assets/images/blue-loader.svg'
 import { getEtherscanLink } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const reactTwitter: any = require('react-twitter-embed')
+
 const Wrapper = styled.div`
   width: 100%;
 `
@@ -90,6 +93,10 @@ function TransactionSubmittedContent({
           <Text fontWeight={500} fontSize={20}>
             Transaction Submitted
           </Text>
+
+          <reactTwitter.TwitterShareButton
+            options={{ text: 'Cha-ching, I just swapped my CEL tokens using #CelSwap 🔁 - Thanks #Celsians 🚀 #UnbankYourself' }}
+          />
 
           {chainId && hash && (
             <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>

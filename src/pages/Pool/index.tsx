@@ -20,12 +20,12 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks
 import AppBody from '../AppBody'
 import { Dots } from '../../components/swap/styleds'
 import * as typeformEmbed from '@typeform/embed'
-import { REGISTERED_LIQUIDITY_PROVIDERS } from '../../constants/index'
+import { LPsByNetwork } from '../../utils/index'
 
 // eslint-disable-next-line react/prop-types
 export default function Pool({ history }: RouteComponentProps) {
   const theme = useContext(ThemeContext)
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
@@ -78,11 +78,13 @@ export default function Pool({ history }: RouteComponentProps) {
     reference.open()
   }
 
+  const liquidityProvidersList = LPsByNetwork(chainId)
+
   return (
     <>
       <AppBody>
         <SwapPoolTabs active={'pool'} />
-        {account && REGISTERED_LIQUIDITY_PROVIDERS.includes(account) ?
+        {account && liquidityProvidersList.includes(account) ?
           <AutoColumn gap="lg" justify="center">
             <ButtonPrimary id="join-pool-button" as={Link} style={{ padding: 16 }} to="/add/CEL">
               <Text fontWeight={500} fontSize={20}>
@@ -127,7 +129,7 @@ export default function Pool({ history }: RouteComponentProps) {
 
               <div>
                 <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
-                  Dont see a pool you joined?{' '}
+                  Don&#39;t see a pool you joined?{' '}
                   <StyledInternalLink id="import-pool-link" to={'/find'}>
                     Import it.
                   </StyledInternalLink>

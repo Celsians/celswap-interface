@@ -20,8 +20,7 @@ import { RedirectToSwap, RedirectPathToSwapOnly } from './Swap/redirects'
 import Celswap from '../assets/images/celswap-logo.svg'
 import GuardedRoute from './GuardedRoute'
 import { useActiveWeb3React } from '../hooks'
-import { REGISTERED_LIQUIDITY_PROVIDERS } from '../constants/index'
-import { useIsDarkMode } from '../state/user/hooks'
+import { LPsByNetwork } from '../utils/index'
 
 
 const AppWrapper = styled.div`
@@ -57,17 +56,23 @@ const BodyWrapper = styled.div`
 const Marginer = styled.div`
   margin-top: 5rem;
 `
+const MainTitle = styled.div`
+  color: ${({ theme }) => theme.h1Color};
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+`
 
 export default function App() {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   const [registeredProvider, setRegisteredProvider] = useState(false)
 
   if (account && !registeredProvider) {
-    REGISTERED_LIQUIDITY_PROVIDERS.includes(account) && setRegisteredProvider(true)
+    const liquidityProvidersList = LPsByNetwork(chainId)
+    liquidityProvidersList.includes(account) && setRegisteredProvider(true)
   }
-
-  const titleColor = useIsDarkMode() ? '#ffffff' : '#2e428e'
 
   return (
     <Suspense fallback={null}>
@@ -79,7 +84,7 @@ export default function App() {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
               <img src={Celswap} alt="logo"/>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center', fontSize: 40, fontWeight: 'bold', color: titleColor }}>CelSwap</div>
+            <MainTitle>CelSwap</MainTitle>
           </div>
         </div>
         <AppWrapper>

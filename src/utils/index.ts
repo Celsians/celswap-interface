@@ -4,7 +4,7 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ROUTER_ADDRESS } from '../constants'
+import { ROUTER_ADDRESS, REGISTERED_LP_MAINNET, REGISTERED_LP_ROPSTEN, REGISTERED_LP_KOVAN } from '../constants'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@uniswap/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
 
@@ -102,4 +102,11 @@ export function escapeRegExp(string: string): string {
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
   if (currency === ETHER) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
+}
+
+export function LPsByNetwork(chainId?: number): Array<string> {
+  if (chainId === 1) return REGISTERED_LP_MAINNET
+  if (chainId === 3) return REGISTERED_LP_ROPSTEN
+  if (chainId === 42) return REGISTERED_LP_KOVAN
+  return []
 }
