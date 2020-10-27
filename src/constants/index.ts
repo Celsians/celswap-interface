@@ -4,7 +4,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { injected, celsiusWallet } from '../connectors'
 // import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const ROUTER_ADDRESS = '0x2D366a4871132E2CdBA35E87fd78D7F82Fa2fc55'
+export const ROUTER_ADDRESS = '0xC6Ca680ccc1374e0FF70Dc3398C0928b8E1AB292'
 
 // A list of tokens by chain
 type ChainTokenList = {
@@ -180,17 +180,7 @@ export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(
 export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
 
-export const REGISTERED_LP_MAINNET = [
-  '0xef24218799bb6427db8E387870b3461d2E182f86',
-  '0x75B04a337830BF4bEEaF96845f92218F987091B4',
-  '0xcCFFA59128C138ee32558Ed3e34963a4e48cfE17',
-  '0xf0384754fFf5420c5CCc4DD585F13211631BA808',
-  '0xdB5027539c190BC5f116CfC50896C493665f420a',
-  '0x90BA5c3Fc599a2616CAdd746E907D07c470A197C',
-  '0x0fd2666Cea8d6670c62e0aa063456ee670AD541f',
-  '0xDeA35e63304E09d2724CE3CDA82E04B44A0ccba3',
-  '0x1b6ce481F1Fc5E63674dd4A6bB0C1CF630a6ad86'
-]
+export const REGISTERED_LP_MAINNET = []
 
 export const REGISTERED_LP_ROPSTEN = [
   '0xef24218799bb6427db8E387870b3461d2E182f86',
