@@ -180,7 +180,7 @@ export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(
 export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
 
-export const REGISTERED_LP_MAINNET = []
+export const REGISTERED_LP_MAINNET = ['0xc33192B79AD149b05169516A8aF2adc6e1E08EF6']
 
 export const REGISTERED_LP_ROPSTEN = [
   '0xef24218799bb6427db8E387870b3461d2E182f86',
