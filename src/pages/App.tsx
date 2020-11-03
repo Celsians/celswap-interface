@@ -75,7 +75,7 @@ export default function App() {
         <div>
           <div style={{ padding: '100px 0 30px 0' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
-              <img src={Celswap} alt="logo"/>
+              <img style={{ width: '300px' }} src={Celswap} alt="logo"/>
             </div>
           </div>
         </div>
