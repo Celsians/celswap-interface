@@ -17,7 +17,7 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import { RedirectToSwap, RedirectPathToSwapOnly } from './Swap/redirects'
-import Celswap from '../assets/images/celswap-logo.svg'
+import Celswap from '../assets/images/CelSwap-logo-2.svg'
 import GuardedRoute from './GuardedRoute'
 import { useActiveWeb3React } from '../hooks'
 import { LPsByNetwork } from '../utils/index'
@@ -56,13 +56,6 @@ const BodyWrapper = styled.div`
 const Marginer = styled.div`
   margin-top: 5rem;
 `
-const MainTitle = styled.div`
-  color: ${({ theme }) => theme.h1Color};
-  display: flex;
-  justify-content: center;
-  font-size: 40px;
-  font-weight: bold;
-`
 
 export default function App() {
   const { account, chainId } = useActiveWeb3React()
@@ -84,7 +77,6 @@ export default function App() {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
               <img src={Celswap} alt="logo"/>
             </div>
-            <MainTitle>CelSwap</MainTitle>
           </div>
         </div>
         <AppWrapper>
