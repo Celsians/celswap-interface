@@ -18,9 +18,11 @@ import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redir
 import Swap from './Swap'
 import { RedirectToSwap, RedirectPathToSwapOnly } from './Swap/redirects'
 import Celswap from '../assets/images/CelSwap-logo-2.svg'
+import CelswapDark from '../assets/images/CelSwap-logo-2-dark.svg'
 import GuardedRoute from './GuardedRoute'
 import { useActiveWeb3React } from '../hooks'
 import { LPsByNetwork } from '../utils/index'
+import { useDarkModeManager } from '../state/user/hooks'
 
 
 const AppWrapper = styled.div`
@@ -59,6 +61,7 @@ const Marginer = styled.div`
 
 export default function App() {
   const { account, chainId } = useActiveWeb3React()
+  const [darkMode] = useDarkModeManager()
 
   const [registeredProvider, setRegisteredProvider] = useState(false)
 
@@ -75,7 +78,7 @@ export default function App() {
         <div>
           <div style={{ padding: '100px 0 30px 0' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
-              <img style={{ width: '300px' }} src={Celswap} alt="logo"/>
+              <img style={{ width: '300px' }} src={darkMode ? CelswapDark : Celswap} alt="logo"/>
             </div>
           </div>
         </div>
