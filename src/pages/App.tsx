@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
@@ -19,9 +19,6 @@ import Swap from './Swap'
 import { RedirectToSwap, RedirectPathToSwapOnly } from './Swap/redirects'
 import Celswap from '../assets/images/CelSwap-logo-2.svg'
 import CelswapDark from '../assets/images/CelSwap-logo-2-dark.svg'
-import GuardedRoute from './GuardedRoute'
-import { useActiveWeb3React } from '../hooks'
-import { LPsByNetwork } from '../utils/index'
 import { useDarkModeManager } from '../state/user/hooks'
 
 
@@ -60,15 +57,7 @@ const Marginer = styled.div`
 `
 
 export default function App() {
-  const { account, chainId } = useActiveWeb3React()
   const [darkMode] = useDarkModeManager()
-
-  const [registeredProvider, setRegisteredProvider] = useState(false)
-
-  if (account && !registeredProvider) {
-    const liquidityProvidersList = LPsByNetwork(chainId)
-    liquidityProvidersList.includes(account) && setRegisteredProvider(true)
-  }
 
   return (
     <Suspense fallback={null}>
@@ -97,8 +86,8 @@ export default function App() {
                 <Route exact strict path="/pool" component={Pool} />
                 {/*<Route exact strict path="/create" component={RedirectToAddLiquidity}/>*/}
                 {/*<Route exact path="/add" component={AddLiquidity}/>*/}
-                <GuardedRoute exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} auth={registeredProvider}/>
-                <GuardedRoute exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} auth={registeredProvider}/>
+                <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+                <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                 <Route exact strict path="/remove/v1/:address" component={RemoveV1Exchange} />
                 <Route exact strict path="/remove/:tokens"
                               component={RedirectOldRemoveLiquidityPathStructure}/>
